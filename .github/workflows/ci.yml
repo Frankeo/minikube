@@ -1,9 +1,8 @@
 name: build
 
 env:
-  GITHUB_REGISTRY: "ghcr.io"
-  GITHUB_OWNER: "frankeo"
-  GITHUB_DOCKER_IMAGE: "hello-rust-docker"
+  DOCKER_REGISTRY: "franciscomoreno1"
+  DOCKER_IMAGE: "hello-rust-docker"
 
 on:
   push:
@@ -51,22 +50,21 @@ jobs:
       - uses: actions/checkout@v3
       - uses: benjlevesque/short-sha@v2.2
 
-      - name: Log into registry ghcr.io
-        uses: docker/login-action@v2
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GHCR_PAT }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build Docker
         run: |
-          docker build -t $GITHUB_REGISTRY/$GITHUB_OWNER/$GITHUB_DOCKER_IMAGE:${{ env.SHA }} . --no-cache
+          docker build -t $DOCKER_REGISTRY/$DOCKER_IMAGE:${{ env.SHA }} . --no-cache
 
       - name: Tag Image
         run: |
-          docker tag $GITHUB_REGISTRY/$GITHUB_OWNER/$GITHUB_DOCKER_IMAGE:${{ env.SHA }} $GITHUB_REGISTRY/$GITHUB_OWNER/$GITHUB_DOCKER_IMAGE:latest
+          docker tag $DOCKER_REGISTRY/$DOCKER_IMAGE:${{ env.SHA }} $DOCKER_REGISTRY/$DOCKER_IMAGE:latest
 
-      - name: Publish Docker Image to GitHub Repository
+      - name: Publish Docker Image to Docker Hub
         run: |
-          docker push $GITHUB_REGISTRY/$GITHUB_OWNER/$GITHUB_DOCKER_IMAGE:${{ env.SHA }}
-          docker push $GITHUB_REGISTRY/$GITHUB_OWNER/$GITHUB_DOCKER_IMAGE:latest
+          docker push $DOCKER_REGISTRY/$DOCKER_IMAGE:${{ env.SHA }}
+          docker push $DOCKER_REGISTRY/$DOCKER_IMAGE:latest
