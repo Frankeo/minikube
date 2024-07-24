@@ -7,7 +7,7 @@ COPY src/ src/
 RUN cargo build --release
 
 # step 2: create the runtime image
-FROM ubuntu:oracular-20240617
+FROM ubuntu:24.10
 WORKDIR /app
 RUN apt-get update && apt-get install -y libssl-dev && apt-get clean
 COPY --from=builder /app/target/release/minikube . 
