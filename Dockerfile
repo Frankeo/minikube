@@ -16,3 +16,5 @@ COPY --from=builder /app/target/release/minikube .
 EXPOSE 8000
 
 CMD ["./minikube"]
+
+LABEL org.opencontainers.image.source https://github.com/frankeo/minikube
