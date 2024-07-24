@@ -9,7 +9,7 @@ RUN cargo build --release
 # step 2: create the runtime image
 FROM ubuntu:24.10
 WORKDIR /app
-RUN apt-get update && apt-get install -y libssl-dev && apt-get clean
+RUN apt-get update && apt-get --no-install-recommends install -y libssl-dev && apt-get clean
 COPY --from=builder /app/target/release/minikube . 
 
 # step 3: expose and execute the app
