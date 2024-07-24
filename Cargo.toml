@@ -1,0 +1,15 @@
+[package]
+name = "minikube"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = "0.6.1" 
+tokio = { version = "1.21.2", features = ["full"] } 
+tracing = "0.1.37" 
+tracing-subscriber = { version = "0.3.16", features = ["env-filter"]} 
+tower-http = { version = "0.3.4", features = ["trace"] }
+
+[[bin]]
+name = "minikube"
+path = "src/main.rs"
