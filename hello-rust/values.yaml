@@ -1,0 +1,14 @@
+image: franciscomoreno1/hello-rust-docker:latest
+
+containerResources:
+  limits:
+    cpu: 50m
+  requests:
+    cpu: 25m
+
+servicePort: 8000
+
+minReplicas: 1
+
+maxReplicas: 10
+averageUtilization: 50

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: hello-rust
+description: A Helm chart for Kubernetes deploy hello world in Rust.
+type: application
+version: 0.1.0
+appVersion: "1.16.0"
