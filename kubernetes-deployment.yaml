@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-rust-deployment
+spec:
+  selector:
+    matchLabels:
+      app: hello-rust
+  template:
+    metadata:
+      labels:
+        app: hello-rust
+    spec:
+      containers:
+        - name: hello-rust
+          image: franciscomoreno1/hello-rust-docker:latest
+          resources:
+            limits:
+              cpu: 50m
+            requests:
+              cpu: 25m
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-rust-service
+spec:
+  type: NodePort
+  ports:
+  - port: 8000
+  selector:
+    app: hello-rust
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: hello-rust-deployment
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hello-rust-deployment
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
