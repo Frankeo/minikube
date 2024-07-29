@@ -17,8 +17,13 @@ spec:
           resources:
             limits:
               cpu: {{ .Values.containerResources.limits.cpu }}
+              memory: {{ .Values.containerResources.limits.memory }}
+              ephemeral-storage: {{ .Values.containerResources.limits.ephemeralStorage }}
             requests:
               cpu: {{ .Values.containerResources.requests.cpu }}
+              memory: {{ .Values.containerResources.requests.memory }}
+              ephemeral-storage: {{ .Values.containerResources.requests.ephemeralStorage }}
+      automountServiceAccountToken: false
 ---
 apiVersion: v1
 kind: Service
