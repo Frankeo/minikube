@@ -35,14 +35,14 @@ This could be checked in the **Replica Sets** section in the dashboard.
 
 ### Rust application
 
-For testing the rust application in your local machine, please install Rust.
+For testing the rust application in your local machine, please install [Rust](https://www.rust-lang.org/es/tools/install).
 
 1. Debug the app: `cargo run`
 2. Check the result in your browser, entering the url: [0.0.0.0:8000](http:0.0.0.0:8000)
 
 ### Docker Image
 
-For testing the docker image generation, please install Docker.
+For testing the docker image generation, please install [Docker](https://docs.docker.com/engine/install/).
 
 1. Generate local image: `docker build -t test-1 .`
 
