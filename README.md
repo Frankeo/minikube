@@ -15,16 +15,21 @@
 
 #### See the app running in your browser
 1. Launch in your browser: `minikube service hello-rust-service`
+![Alt text](<Captura desde 2024-07-29 11-51-03.png>)
+![Alt text](<Captura desde 2024-07-29 11-50-01.png>)
 
 #### Testing Autoscalling
 1. Install dashboard addon: `minikube addons enable metrics-server`
 2. Launch dashboard: `minikube dashboard`
 3. Execute testing script: `./script-test.sh`
 
-You can check in 2 or 3 minutes how the relicaset start to scale up, adding more pods.
+You can check in 2 or 3 minutes how the replicaset start to scale up, adding more pods.
+![Alt text](<Captura desde 2024-07-29 11-55-25.png>)
 
 To scale down, just stop terminal with script execution and in 2 or 3 minutes, the replicaset is going to delete some pods.
+![Alt text](<Captura desde 2024-07-29 12-02-32.png>)
 
+This could be checked in the **Replica Sets** section in the dashboard.
 
 ## Local Development
 

@@ -3,12 +3,12 @@ image: franciscomoreno1/hello-rust-docker:latest
 containerResources:
   limits:
     cpu: 50m
-    memory: 100mi
-    ephemeralStorage: "2Gi"
+    memory: 100Mi
+    ephemeralStorage: 2Gi
   requests:
     cpu: 25m
-    memory: 100mi
-    ephemeralStorage: "2Gi"
+    memory: 100Mi
+    ephemeralStorage: 2Gi
 
 servicePort: 8000
 
